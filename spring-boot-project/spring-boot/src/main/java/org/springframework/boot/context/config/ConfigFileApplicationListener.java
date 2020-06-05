@@ -328,6 +328,7 @@ public class ConfigFileApplicationListener
 			this.activatedProfiles = false;
 			this.loaded = new LinkedHashMap<>();
 			initializeProfiles();
+			//加载不同profile 配置的配置
 			while (!this.profiles.isEmpty()) {
 				Profile profile = this.profiles.poll();
 				if (profile != null && !profile.isDefaultProfile()) {
@@ -464,6 +465,7 @@ public class ConfigFileApplicationListener
 				}
 			}
 			Set<String> processed = new HashSet<>();
+			//properties yaml yml文件读取
 			for (PropertySourceLoader loader : this.propertySourceLoaders) {
 				for (String fileExtension : loader.getFileExtensions()) {
 					if (processed.add(fileExtension)) {
@@ -640,6 +642,7 @@ public class ConfigFileApplicationListener
 			locations.addAll(
 					asResolvedSet(ConfigFileApplicationListener.this.searchLocations,
 							DEFAULT_SEARCH_LOCATIONS));
+			//默认搜索路径 classpath:/,classpath:/config/,file:./,file:./config/
 			return locations;
 		}
 
